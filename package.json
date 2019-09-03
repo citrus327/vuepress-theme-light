@@ -1,0 +1,24 @@
+{
+  "name": "vuepress-theme-light",
+  "version": "1.0.2",
+  "description": "a light vuepress theme",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vuepress dev example"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phshy0607/vuepress-theme-light.git"
+  },
+  "keywords": [],
+  "author": "Hao Peng <phshy0607@outlook.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/phshy0607/vuepress-theme-light/issues"
+  },
+  "homepage": "https://github.com/phshy0607/vuepress-theme-light#readme",
+  "devDependencies": {
+    "vuepress": "^1.0.3"
+  }
+}
