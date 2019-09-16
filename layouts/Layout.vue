@@ -2,6 +2,9 @@
   <div>
     <Navbar/>
     <PostList v-if="$route.path === '/posts/'"/>
+    <template v-else-if="$route.path === '/'">
+      <Content/>
+    </template>
     <Content v-else/>
   </div>
 </template>
