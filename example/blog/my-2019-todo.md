@@ -5,7 +5,7 @@ tags:
 date: 2018-10-31 17:20:18
 ---
 
-- Learn TypeScript
+[x] Learn TypeScript
 - Learn React and build a project with React
 - Learn Git and Github
 - Contribute to the Open Source community

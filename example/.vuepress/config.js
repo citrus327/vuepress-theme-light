@@ -4,6 +4,7 @@ module.exports = {
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Posts', link: '/posts/' }
-    ]
+    ],
+    lastUpdated: true
   }
 }

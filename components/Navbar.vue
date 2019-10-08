@@ -20,12 +20,19 @@ export default {
 
 <style lang="stylus" scoped>
   .vuepress-theme-light__navs 
+    padding: 0;
     list-style: none;
+    margin-bottom: 48px;
 
     li.vuepress-theme-light__nav
+      font-size: 24px;
+      font-weight: bolder;
       display: inline-block;
+      transition: opacity linear 100ms 0ms;
+      &:hover
+        cursor: pointer;
+        opacity: 0.5;
 
     li.vuepress-theme-light__nav + li.vuepress-theme-light__nav
-      margin-left: 20px;
-      
+      margin-left: 36px;
 </style>
