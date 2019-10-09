@@ -1,7 +1,7 @@
 <template>
   <div>
     <Navbar/>
-    <PostList v-if="$route.path === '/posts/'"/>
+    <PostList v-if="$route.path === '/posts' || $route.path === '/posts/'"/>
     <Content v-else style="width: 100%;"/>
   </div>
 </template>
