@@ -1,6 +1,6 @@
 <template>
   <div class="vuepress-theme-light__posts-list">
-    <p style="margin: 0;display: flex; align-items: center; justify-content: flex-end;">
+    <p class="tags">
       Tags: &nbsp;<Tags @click="selectTag" :selected-tag="currentTag"/>
     </p>
     <ul>
@@ -9,7 +9,11 @@
         :key="page.path"
         class="vuepress-theme-light__post" 
       >
-        <div class="vuepress-theme-light__post__title" @click="$router.push(page.path)">
+        <div 
+          class="vuepress-theme-light__post__title" 
+          @click="$router.push(page.path)"
+          :title="page.frontmatter.title || page.title || '无题'"
+        >
          {{ page.frontmatter.title || page.title || '无题' }}
         </div>
         <span class="vuepress-theme-light__post__tag">
@@ -84,6 +88,12 @@ export default {
 <style lang="stylus" scoped>
   .vuepress-theme-light__posts-list
     font-size 18px
+    .tags
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content:
+      flex-end;
     ul, li
       list-style: none;
       padding: 0;
@@ -118,6 +128,8 @@ export default {
       display none
     .vuepress-theme-light__post__title
       max-width: 100% !important
+    .tags
+      display none !important
   
   @media screen and (min-width: 768px) and (max-width: 1023px) 
     .vuepress-theme-light__post__tag
