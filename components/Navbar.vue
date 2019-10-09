@@ -20,13 +20,12 @@ export default {
 
 <style lang="stylus" scoped>
   .vuepress-theme-light__navs 
-    padding: 0;
     margin: 0;
-    padding-top: 12px;
+    padding: 24px 0px;
     list-style: none;
 
     li.vuepress-theme-light__nav
-      font-size: 24px;
+      font-size: calc(10px + 1vw);
       font-weight: bolder;
       display: inline-block;
       transition: opacity linear 100ms 0ms;

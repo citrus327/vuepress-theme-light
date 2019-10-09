@@ -36,6 +36,8 @@ export default {
   .vuepress-theme-light__tags
     display: inline-block;
     font-size: 0.8em;
+    margin: 0;
+    padding: 0;
     li
       display: inline-block;
       list-style: none;

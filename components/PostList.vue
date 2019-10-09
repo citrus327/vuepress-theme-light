@@ -1,6 +1,6 @@
 <template>
   <div class="vuepress-theme-light__posts-list">
-    <p style="display: flex; align-items: center; justify-content: flex-end;">
+    <p style="margin: 0;display: flex; align-items: center; justify-content: flex-end;">
       Tags: &nbsp;<Tags @click="selectTag" :selected-tag="currentTag"/>
     </p>
     <ul>
@@ -12,7 +12,7 @@
         <div class="vuepress-theme-light__post__title" @click="$router.push(page.path)">
          {{ page.frontmatter.title || page.title || '无题' }}
         </div>
-        <span style="font-size: 0.7em; margin-left: auto; margin-right: 10px;">
+        <span class="vuepress-theme-light__post__tag">
            {{ page.frontmatter.tags}}
          </span>
         <div class="vuepress-theme-light__post__created">
@@ -25,7 +25,7 @@
 
 <script>
 import Tags from './tags'
-import { isArray, isString, formatDate } from './utils'
+import { isArray, isString, formatDate} from './utils'
 
 export default {
   name: 'PostList',
@@ -96,6 +96,11 @@ export default {
       .vuepress-theme-light__post__created 
         font-size: 14px;
 
+      .vuepress-theme-light__post__tag
+        font-size: 0.7em;
+        margin-left: auto;
+        margin-right: 10px;
+
       .vuepress-theme-light__post__title
         max-width: 70%;
         display: block;
@@ -105,5 +110,31 @@ export default {
         &:hover 
           cursor: pointer;
           text-decoration: underline;
-        
+
+  @media screen and (max-width: 767px) 
+    .vuepress-theme-light__post__tag
+      display none
+    .vuepress-theme-light__post__created 
+      display none
+    .vuepress-theme-light__post__title
+      max-width: 100% !important
+  
+  @media screen and (min-width: 768px) and (max-width: 1023px) 
+    .vuepress-theme-light__post__tag
+      display none
+    .vuepress-theme-light__post__created 
+      display none
+    .vuepress-theme-light__post__title
+      max-width: 100% !important
+
+  @media screen and (min-width: 1024px) and (max-width: 1279px)
+    .vuepress-theme-light__post__tag
+      display none
+    .vuepress-theme-light__post__title
+      max-width: 80% !important
+    
+
+
+
+  
 </style>
