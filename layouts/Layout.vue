@@ -9,10 +9,9 @@
 <script>
 import PostList from '../components/PostList'
 import Navbar from '../components/Navbar'
-import Me from '../components/Me'
 export default {
   name: 'Layout',
-  components: { Navbar, PostList, Me }
+  components: { Navbar, PostList }
 }
 </script>
 

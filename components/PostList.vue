@@ -1,16 +1,19 @@
 <template>
   <div class="vuepress-theme-light__posts-list">
+    <p style="display: flex; align-items: center; justify-content: flex-end;">
+      Tags: &nbsp;<Tags @click="selectTag" :selected-tag="currentTag"/>
+    </p>
     <ul>
       <li 
-        v-for="page in $site.pages" 
+        v-for="page in pages" 
         :key="page.path"
         class="vuepress-theme-light__post" 
       >
         <div class="vuepress-theme-light__post__title" @click="$router.push(page.path)">
-         {{ page.frontmatter.title || page.title }}
+         {{ page.frontmatter.title || page.title || '无题' }}
         </div>
         <span style="font-size: 0.7em; margin-left: auto; margin-right: 10px;">
-           {{ page.frontmatter.tags}}
+           <Badge v-for="tag in page.frontmatter.tags" :text="tag" type="error"/>
          </span>
         <div class="vuepress-theme-light__post__created">
           {{ page.lastUpdated | formatDate }}
@@ -21,41 +24,48 @@
 </template>
 
 <script>
-function format (date, fmt) {
-  const v = new Date(date)
-  let o = { 
-    "M+" : v.getMonth()+1,                 //月份 
-    "d+" : v.getDate(),                    //日 
-    "h+" : v.getHours(),                   //小时 
-    "m+" : v.getMinutes(),                 //分 
-    "s+" : v.getSeconds(),                 //秒 
-    "q+" : Math.floor((v.getMonth()+3)/3), //季度 
-    "S"  : v.getMilliseconds()             //毫秒 
-  }; 
-  if(/(y+)/.test(fmt)) {
-    fmt = fmt.replace(RegExp.$1, (v.getFullYear() + "").substr(4 - RegExp.$1.length))
-  }
+import Tags from './tags'
+import { isArray, isString, formatDate } from './utils'
 
-  for(let k in o) {
-    if(new RegExp("("+ k +")").test(fmt)) {
-      fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length))); 
-    }
-  }
-
-  return fmt;
-}
 export default {
   name: 'PostList',
+  components: {
+    Tags
+  },
   filters: {
     formatDate (v) {
-      return v ? format(v, 'yyyy-MM-dd') : ''
+      return v ? formatDate(v, 'yyyy-MM-dd') : ''
+    }
+  },
+  data () {
+    return {
+      currentTag: null
     }
   },
   computed: {
     pages () {
-      return this.$site.pages.filter(() => {
-        
+      return this.$site.pages.filter((page) => {
+        let filtered = true
+        if (this.currentTag !== null) {
+          const tags = page.frontmatter.tags
+          if (isArray(tags)) {
+            filtered = tags.indexOf(this.currentTag) !== -1
+          } else if (isString(tags)) {
+            filtered = tags === this.currentTag
+          }
+        }
+
+        return page.path !== '/' && filtered
       })
+    }
+  },
+  methods: {
+    selectTag (e) {
+      if (this.currentTag && this.currentTag === e) {
+        this.currentTag = null
+      } else {
+        this.currentTag = e
+      }
     }
   }
 }

@@ -22,7 +22,6 @@ export default {
   .vuepress-theme-light__navs 
     padding: 0;
     list-style: none;
-    margin-bottom: 48px;
 
     li.vuepress-theme-light__nav
       font-size: 24px;
