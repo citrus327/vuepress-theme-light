@@ -13,10 +13,10 @@
          {{ page.frontmatter.title || page.title || '无题' }}
         </div>
         <span style="font-size: 0.7em; margin-left: auto; margin-right: 10px;">
-           <Badge v-for="tag in page.frontmatter.tags" :text="tag" type="error"/>
+           {{ page.frontmatter.tags}}
          </span>
         <div class="vuepress-theme-light__post__created">
-          {{ page.lastUpdated | formatDate }}
+          {{ page.date }}
         </div>
       </li>
     </ul>
@@ -54,8 +54,18 @@ export default {
             filtered = tags === this.currentTag
           }
         }
-
         return page.path !== '/' && filtered
+      }).map((page) => ({
+        ...page,
+        date: formatDate(page.frontmatter.date || page.lastUpdated, 'yyyy-MM-dd')
+      })).sort((a, b) => {
+        const getDate = (page) => new Date(page.date)
+        
+        if (getDate(a) > getDate(b)) {
+          return -1
+        } else {
+          return 1
+        }
       })
     }
   },

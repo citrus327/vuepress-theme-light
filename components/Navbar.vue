@@ -21,6 +21,8 @@ export default {
 <style lang="stylus" scoped>
   .vuepress-theme-light__navs 
     padding: 0;
+    margin: 0;
+    padding-top: 12px;
     list-style: none;
 
     li.vuepress-theme-light__nav
