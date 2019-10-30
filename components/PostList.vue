@@ -58,7 +58,7 @@ export default {
             filtered = tags === this.currentTag
           }
         }
-        return page.path !== '/' && filtered
+        return page.path !== '/' && filtered && page.frontmatter.show !== false
       }).map((page) => ({
         ...page,
         date: formatDate(page.frontmatter.date || page.lastUpdated, 'yyyy-MM-dd')
